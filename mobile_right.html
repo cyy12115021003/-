@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>Title</title>
+    <link rel="stylesheet" href="css/wl.css" >
+
+</head>
+<body >
+<div class="wl-bj">
+    <!--导航-->
+
+    <!--主体-->
+    <div class="wl-body ">
+        <div class="wl-k10 wl-a5">
+            <div class="wl-font-orange">
+                <div class="wl-i13 wl-font-weight">移动互联网应用排名</div>
+                <div class="wl-i9_1 wl-txt">Ranking of Mobile Internet Applications</div>
+            </div>
+             <div class="wl-box wl-b1" style="padding:0">
+                <div class="wl-k10 wl-a4" id="mobile_chart03" style="border-right:1px solid #3f6a9d"></div>
+                <div class="wl-k10 wl-a4" id="mobile_chart05"></div>
+            </div>
+            <div class="wl-font-orange wl-t2">
+                <div class="wl-i13 wl-font-weight">移动网寻呼成功率/接通成功率</div>
+                <div class="wl-i9_1 wl-txt">Paging /Connection Success Rate</div>
+            </div>
+            <div id="mobile_chart04" class="wl-box" style="padding:0;height: 450px;">
+                
+            </div>
+        </div>
+        <div class="wl-k10 wl-a5" style="padding-left: 9px;">
+            <div class="wl-font-orange">
+                <div class="wl-i13 wl-font-weight">告警数</div>
+                <div class="wl-i9_1 wl-txt">Alarm Quantity</div>
+            </div>
+            <div class="wl-b1 wl-t1">
+                <div class="wl-k21 wl-a4">
+                    <div class="wl-box" style="height:190px;margin:0;padding: 0;width: 95%;">
+                        <div class="wl-titile-bj">全省告警数</div>
+                        <div id="alarmNumber" class="wl-i21 wl-m1 wl-d1 wl-font-yellow"></div>
+                        <div class="wl-i12 wl-m1 wl-d0 "></div>
+                    </div>
+                </div>
+                <div class="wl-k21 wl-a4">
+                    <div class="wl-box" style="height: 190px;margin:0;padding: 0;width: 95%;">
+                        <div class="wl-titile-bj">全省重要告警数</div>
+                        <div id="alarImportNumber" class="wl-i21 wl-m1 wl-d1 wl-font-yellow"></div>
+                        <div class="wl-i12 wl-m1 wl-d0 "></div>
+                    </div>
+                </div>
+                <div class="wl-k21 wl-a4">
+                    <div class="wl-box" style="height: 190px;margin:0;padding: 0;width: 95%;">
+                        <div class="wl-titile-bj">全省工单数</div>
+                        <div id="orderNumber" class="wl-i21 wl-m1 wl-d1 wl-font-yellow"></div>
+                        <div class="wl-i12 wl-m1 wl-d0 "></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="wl-box wl-o1" style="padding: 0;height: 500px;margin-top:30px;">
+            	<table>
+            		<thead class="wl-m1 wl-i10">
+                		<tr style="height: 80px;" class="table_td">
+                			<td>专业</td>
+	                		<td>告警数</td>
+	                		<td>工单数</td>
+	                		<td>分公司工单</td>
+	                	</tr>
+                    </thead>
+                    <tbody id="alarList"></tbody>
+            	</table>
+                
+               
+                <!--<div class="wl-o2" style="top:51%;left:167px;z-index: 99;">
+                    <img src="images/rebot.png" >
+                    <div class="wl-o2" style="top:0;left:30px;white-space:nowrap;">精确定位</div>
+                </div>
+                <div class="wl-o2" style="top:51%;left:297px;z-index: 99;">
+                    <img src="images/rebot.png" >
+                    <div class="wl-o2" style="top:0;left:30px;white-space:nowrap;">智慧预处理</div>
+                </div>-->
+            </div>
+            <div class="wl-box " style="padding:0 0 0 10px;height: 90px;line-height: 90px;font-size: 28px;margin-top: 30px;">
+                <div class="wl-k6 wl-c6 wl-font-red">重大障碍升级：</div>
+                <div class="wl-k14 wl-c6">
+                	<div id="scroll_div01" class="fl">   
+                		<div id="scroll_begin01">
+                			<!--<span>1南京市江东中路基站由于停电导致退服</span>
+		                    <span>2南京市江东中路基站由于停电导致退服</span>
+		                    <span>3南京市江东中路基站由于停电导致退服</span>
+		                    <span>4南京市江东中路基站由于停电导致退服</span>
+		                    <span>5南京市江东中路基站由于停电导致退服</span>
+		                    <span>6南京市江东中路基站由于停电导致退服</span>
+		                    <span>7南京市江东中路基站由于停电导致退服</span>  -->
+                		</div>   
+                		<div id="scroll_end01"></div> 
+                	</div>                	
+                </div>           
+            </div>
+            <div class="wl-box " style="padding:0 0 0 10px;height:90px;line-height: 90px;font-size: 28px;margin-top:25px;">
+                <div class="wl-k6 wl-c6 wl-font-red">风险操作<span id="riskLength"></span>：</div>
+                <div class="wl-k14 wl-c6">
+                	<div id="scroll_div02" class="fl">   
+                		<div id="scroll_begin02">
+                			<!--<span>1南京市江东中路基站由于停电导致退服</span>
+		                    <span>2南京市江东中路基站由于停电导致退服</span>
+		                    <span>3南京市江东中路基站由于停电导致退服</span>
+		                    <span>4南京市江东中路基站由于停电导致退服</span>
+		                    <span>5南京市江东中路基站由于停电导致退服</span>
+		                    <span>6南京市江东中路基站由于停电导致退服</span>
+		                    <span>7南京市江东中路基站由于停电导致退服</span>  -->
+                		</div>   
+                		<div id="scroll_end02"></div> 
+                	</div>                	
+                </div>           
+            </div>
+
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/echarts.js"></script>
+<script type="text/javascript" src="js/mobile_chart02.js?ran=" + Math.random();" ></script>
+<script type="text/javascript" src="js/interfaceURL.js?v=1.0" ></script>
+<script type="text/javascript" src="js/marquee.js" ></script>
+<script>
+
+</script>
+</body>
+</html>

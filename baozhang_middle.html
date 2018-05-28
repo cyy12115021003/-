@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<title>Title</title>
+	<link rel="stylesheet" href="css/wl.css">
+</head>
+<body>
+<div class="wl-bj">
+	<div class="wl-body ">
+		<div class="wl-k12 wl-a5">
+			<div class="wl-font-orange">
+				<div class="wl-i13 wl-font-weight">全省基站服务情况<span id="totalShow"></span></div>
+				<div class="wl-i9_1 wl-txt">Base Station Services in the Province</div>
+			</div>
+			<div class="wl-box wl-o1" style="border: none;height: 980px;">
+				<div class="wl-o2" id="mobile_chart_Map" style="width:100%;height: 980px;z-index: 10"></div>
+				<div class="wl-skip-warp">
+					<div class="wl-i10_1" style="padding-left: 10px;">掉站TOP3</div>
+					<div id="mobileTopDiv"></div>
+				</div>
+				<div class="wl-skip-warp2">
+                	<p class="wl-l22">掉站</p>
+                	<div class="wl-b1">
+                		<div class="wl-a4 wl-k5"><p class="lenged mapColor1"></p></div>
+                		<div class="wl-a4 wl-k15"><p>>=150</p></div>
+                	</div>
+                	<div class="wl-b1">
+                		<div class="wl-a4 wl-k5"><p class="lenged mapColor2"></p></div>
+                		<div class="wl-a4 wl-k15"><p>100~150</p></div>
+                	</div>
+                	<div class="wl-b1">
+                		<div class="wl-a4 wl-k5"><p class="lenged mapColor3"></p></div>
+                		<div class="wl-a4 wl-k15"><p><=100</p></div>
+                	</div>
+                </div>
+			</div>
+		</div>
+		<div class="wl-k8 wl-a5">
+			<div class="wl-font-orange ">
+				<div class="wl-i13 wl-font-weight">各地市宽带/itv在线用户数</div>
+				<div class="wl-i9_1 wl-txt">Broadband / iTV Online Users</div>
+			</div>
+			<div id="baozhang_chart01" class="wl-box" style="height: 410px;margin:10px 0 0 0 ;padding: 0;width: 100%;"></div>
+			<div class="wl-font-orange wl-d0">
+				<div class="wl-i13 wl-font-weight">关键设备告警<span id="tiaoshu"></span><img id="alertImg" style="margin-left: 10px;" src=""/></div>
+				<div class="wl-i9_1 wl-txt">Important warning</div>
+			</div>
+			<div id="baozhangDiv" class="wl-box" style="height: 450px;margin:10px 0 0 0 ;padding:0px;width: 100%;">
+				<div id="scrollDiv" style="overflow:hidden;width:100%;height: 100%;">
+					<div id="scrollCon" style="height: 20000px;width: 100%;"><ul class="scrollList" id="scrollList"></ul></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/echarts.js"></script>
+<script type="text/javascript" src="js/jiangsu.js"></script>
+<script type="text/javascript" src="js/interfaceURL.js?v=1.0;"></script>
+<script type="text/javascript" src="js/baozhang_chart01.js?v=1.0;"></script>
+</body>
+</html>

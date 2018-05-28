@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>Title</title>
+    <link rel="stylesheet" href="css/wl.css" >
+</head>
+<body >
+<div class="wl-bj">
+    <div id="wlBody" class="wl-body" style="height: 700px;padding: 0px;"></div>
+</div>
+<script>
+	var _toShowImg = getParamFromUrl().toShowImg || 'images/baozhang/zhong.jpg';
+	document.getElementById('wlBody').innerHTML = '<img src="'+_toShowImg+'?_t='+new Date().getTime()+'" width="1024px" height="700px" />'
+
+	function getParamFromUrl(url) {
+		try {
+			var url = url || document.location.href;
+			if(url.indexOf('?') >= 0){
+				var params = url.substring(url.indexOf('?') + 1).split('&'), param = {}, pks;
+				for(var i = 0; i < params.length; i++){
+					pks = params[i].split('=');
+					if(pks.length > 1){
+						param[pks[0]] = pks[1];
+					}
+				}
+				return param;
+			}
+		} catch (e) {}
+		return {};
+	}
+</script>
+</body>
+</html>

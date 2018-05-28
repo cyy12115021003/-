@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>Title</title>
+    <style type="text/css">
+    	#tagbox a{position: absolute;padding: 3px 6px;}
+    	#tagbox img{margin: 10px;}
+    </style>
+    <link rel="stylesheet" href="css/wl.css" >
+</head>
+<body >
+<div class="wl-bj">
+    <div class="wl-body ">
+        <div class="wl-k10 wl-a5">
+            <div class="wl-font-orange">
+                <div class="wl-i13 wl-font-weight">各地市物联网用户数</div>
+                <div class="wl-i9_1 wl-txt" style="padding-right: 20px">Users of IOT
+	                <div style=" border-radius: 3px; text-align: center; padding: 0 5px; background-color: #FFCA6A; color: rgb(5, 5, 5); float: right; display: inline-block; line-height: 25px; vertical-align: middle;">总计：<span id="sum_IOTuser_span"></span></div>
+                </div>
+            </div>
+            <div id="government_chart03" class="wl-box " style="padding:0"></div>
+
+            <div class="wl-font-orange wl-t2">
+                <div class="wl-i13 wl-font-weight">全省4G物联网并发用户数</div>
+                <div class="wl-i9_1 wl-txt">Number of IOT Users</div>
+            </div>
+            <div id="government_chart04" class="wl-box" style="padding:0;height: 450px;">
+              
+            </div>
+        </div>
+        <div class="wl-k10 wl-a5" style="padding-left: 9px;">
+            <div class="wl-font-orange">
+                <div class="wl-i13 wl-font-weight">专属中心</div>
+                <div class="wl-i9_1 wl-txt">Exclusive Center</div>
+            </div>
+
+            <div class="wl-box wl-o1" style="padding: 0;overflow-y: auto;overflow-x: hidden;height: 958px;" id="centerDiv">
+            	<p class="wl-i8" style="padding: 10px 5px 15px;">省专属中心</p>
+        		<ul class="imgList" id="imgList"></ul>
+        		<p class="wl-i8" style="padding: 10px 5px 15px;">市专属中心</p>
+        		<ul class="imgList" id="imgListCity"></ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/echarts.js"></script>
+<script type="text/javascript" src="js/interfaceURL.js?v=1.0" ></script>
+<script type="text/javascript" src="js/government_chart02.js?v=1.0;" ></script>
+<div id="toolTipDIv" class="xuanfu" style="display: none;"></div>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<title>江苏电信网络核心能力</title>
+	<link rel="stylesheet" href="css/wl.css">
+	<style>
+		body {overflow:hidden;}
+		.lightRed {color : #FF580D}
+		.flashing{
+			animation: twinkling .81s 1 ease-in-out;animation-fill-mode : forwards;
+			-webkit-animation: twinkling .81s 1 ease-in-out;-webkit-animation-fill-mode : forwards;
+		}
+		@-webkit-keyframes twinkling{
+			0%{  opacity: 1;  }
+			12.5%{  opacity: 0.75;  }
+			25%{  opacity: 0.5;  }
+			37.5%{  opacity: 0.25;  }
+			50%{  opacity: 0;  }
+			62.5%{  opacity: 0.25;  }
+			75%{  opacity: 0.5;  }
+			87.5%{  opacity: 0.75;  }
+			100%{  opacity: 1;  }
+		}
+		@keyframes twinkling{
+			0%{  opacity: 1;  }
+			12.5%{  opacity: 0.75;  }
+			25%{  opacity: 0.5;  }
+			37.5%{  opacity: 0.25;  }
+			50%{  opacity: 0;  }
+			62.5%{  opacity: 0.25;  }
+			75%{  opacity: 0.5;  }
+			87.5%{  opacity: 0.75;  }
+			100%{  opacity: 1;  }
+		}
+	</style>
+</head>
+<body>
+<div class="wl-bj wl-top-wrap" style="width:1600px;background-size:100%;margin: 0;">
+	<!--左边-->
+	<div class="wl-top-wrap" style="padding: 0 20px;">
+		<div style="cursor: pointer;" class="wl-k10 wl-a4">
+			<img src="images/logo.png" class="wl-a1 " style="margin-right: 5px;"><span class="wl-a1 wl-q6">江苏电信网络核心能力</span>
+		</div>
+		<div class="wl-k10 wl-a4 wl-m3">
+			<span id="currentTime" class="wl-i10 wl-w7 wl-a1 wl-q6"></span>
+			<div style="display: inline-block;">
+				<img id="weatherLogo" src="" class="wl-a1">
+				<span id="hightemp" class="wl-a1 wl-q6"></span>
+				<span class="wl-q6 wl-a1">
+                	<div class="wl-i7 wl-m2" id="weatherCity">南京市</div>
+               	<div id="weatherType" class="wl-i9"></div>
+            	</span>
+			</div>
+		</div>
+	</div>
+	<div class="wl-float-clear"></div>
+</div>
+<div style="width: 1600px;" id="iframeDiv">
+	<div class="wl-float-left">
+		<iframe frameborder=0 width=1600 height=1100 marginheight=0 marginwidth=0 scrolling=no src="leftPublic.html"></iframe>
+	</div>
+	<div class="wl-float-clear"></div>
+</div>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/interfaceURL.js?v=1.0"></script>
+<script>
+	var $wendu,$weatherType, $weatherCity,  weatherRefreshTime = 12 * 60 * 60000, _isOnlyMainPage = true;
+	var _flashWeatherInterval, _curFlashEareIndex, defWeatherLogo = "images/weatherIcon/qing.png";
+	$(function () {
+		var currentTime = document.getElementById("currentTime");
+		setInterval(function () {// 程序计时的月从0开始取值后+1
+			var time = new Date();
+			currentTime.innerHTML = time.getFullYear() + "年" + (time.getMonth() + 1) + "月" + time.getDate() + "日      " + time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds();
+		}, 1000);
+		//weatherLogo = document.getElementById('weatherLogo');
+		$wendu = $("#hightemp");
+		$weatherType = $("#weatherType");
+		$weatherCity = $("#weatherCity");
+		handleWeather();
+	});
+	
+	function handleWeather() {
+		$.ajax({
+			url: "http://"+url+"/bigscreen-schedule/bigScreen/weatherData",
+			type: "get", data: {}, dataType: "json",
+			success: function (data) {
+				if (data.TSR_CODE == "0") {
+					drawWeather(data.body);
+				} else {
+					$wendu.html("未知");
+					$weatherType.html("晴");
+				//	weatherLogo.src = defWeatherLogo;
+				}
+				setTimeout(handleWeather, weatherRefreshTime);
+			},
+			error: function () {}
+		});
+	}
+
+	function drawWeather(weatherData) {
+		window._curFlashEareIndex = 0;
+		if (_flashWeatherInterval){
+			clearInterval(_flashWeatherInterval);
+			_flashWeatherInterval = null;
+
+		}
+		_flashWeatherInterval = setInterval(function () {
+			if (_curFlashEareIndex >= weatherData.length){
+				_curFlashEareIndex = 0;
+			}
+			showWeather(weatherData[_curFlashEareIndex]);
+			_curFlashEareIndex++;
+		}, 3840);
+	}
+
+	/*function getWeatherLogo(type) {
+		var logos = {
+			'阵雨': 'zhenyu',
+			'阴': 'yin',
+			'晴': 'qing',
+			'多云': 'duoyun',
+			'雷阵雨': 'leizhenyu',
+			'雨夹雪': 'yujiaxue',
+			'小雨': 'xiaoyu',
+			'大雨': 'dayu',
+			'中雨': 'zhongyu',
+			'暴雨': 'baoyu',
+			'大暴雨' : 'baoyu', '特大暴雨' : 'baoyu',
+			'阵雪' : 'zhenxue',
+			'小雪' : 'xiaoxue',
+			'中雪' : 'zhongxue',
+			'大雪' : 'daxue', '暴雪' : 'daxue',
+			'雾' : 'wu',
+			'小到中雨' : 'xiaoyu_zhongyu', '小雨-中雨' : 'xiaoyu_zhongyu',
+			'中到大雨' : 'zhongyu_dayu', '中雨-大雨' : 'zhongyu_dayu',
+			'大到暴雨' : 'dayu_baoyu', '大雨-暴雨' : 'dayu_baoyu', '暴雨转大暴雨' : 'dayu_baoyu', '暴雨-大暴雨' : 'dayu_baoyu',
+			'大暴雨转特大暴雨' : 'dayu_baoyu', '大暴雨-特大暴雨' : 'dayu_baoyu',
+			'小到中雪' : 'xiaoxue_zhongxue', '小雪-中雪' : 'xiaoxue_zhongxue',
+			'中到大雪' : 'zhongxue_daxue', '中雪-大雪' : 'zhongxue_daxue', '大到暴雪' : 'zhongxue_daxue', '大雪-暴雪' : 'zhongxue_daxue'
+		};
+		return 'images/weatherIcon/' + (logos[type] || 'xiaoyu') + '.png';
+	}*/
+	
+	
+	function showWeather(wData) {
+		cssAnimate($wendu.parent(), 'flashing');
+		$weatherCity.html(wData.city);
+		$wendu.html(wData.lowTem + '~' + wData.highTem + '℃');//温度
+		$weatherType.html(wData.describe);//阵雨、晴、多云等等
+	}
+
+	function cssAnimate($me, animationName, callBack) {
+		var animationEnd = 'webkitAnimationEnd animationend', animClz = animationName;
+		var listener = function () {
+			callBack && callBack();
+			$me.removeClass(animClz).off(animationEnd, false, listener);
+		};
+		$me.addClass(animClz).on(animationEnd, listener);
+	}
+
+</script>
+</body>
+</html>

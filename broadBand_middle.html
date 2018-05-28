@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>江苏电信网络数据核心能力</title>
+    <link rel="stylesheet" href="css/wl.css" >
+
+</head>
+<body >
+<div class="wl-bj">
+    <!--导航-->
+    <!--主体-->
+    <div class="wl-body ">
+        <div class="wl-k12 wl-a5">
+            <div class="wl-font-orange">
+                <div class="wl-i13 wl-font-weight">全省装/修情况 <span id="totalShow"></span></div>
+                <div class="wl-i9_1 wl-txt">Situation of Install And Repair</div>
+            </div>
+            <div class="wl-box wl-o1" style="border: none;height:980px;">
+                <div class="wl-o2" id="broadBand_chart_Map" style="width:100%;height:980px;z-index: 10"></div>
+                <div class="wl-skip-warp">
+                    <div class="wl-i10_1" style="padding-left: 10px;">装机TOP3</div>
+                   <div id="broadTopDiv"></div>
+                   <!-- <div class="wl-skip-box wl-i4_1">
+                        <div class="wl-skip-label">1</div>
+                        <div id="broad_topOneName" class="wl-i5"></div>
+                        <div id="broad_topOneZJ"></div>
+                        <div id="broad_topOneXZ"></div>
+                    </div>
+                    <div class="wl-skip-box wl-i4_1">
+                        <div class="wl-skip-label">2</div>
+                        <div id="broad_topTwoName" class="wl-i5"></div>
+                        <div id="broad_topTwoZJ"></div>
+                        <div id="broad_topTwoXZ"></div>
+                    </div>
+                    <div class="wl-skip-box wl-i4_1">
+                        <div class="wl-skip-label">3</div>
+                        <div id="broad_topThrName" class="wl-i5"></div>
+                        <div id="broad_topThrZJ"></div>
+                        <div id="broad_topThrXZ"></div>
+                    </div>-->
+                </div>
+                
+                <div class="wl-skip-warp2">
+                	<p class="wl-l22">装机</p>
+                	<div class="wl-b1">
+                		<div class="wl-a4 wl-k5"><p class="lenged mapColor1"></p></div>
+                		<div class="wl-a4 wl-k15"><p>>=1000</p></div>
+                	</div>
+                	<div class="wl-b1">
+                		<div class="wl-a4 wl-k5"><p class="lenged mapColor2"></p></div>
+                		<div class="wl-a4 wl-k15"><p>500~1000</p></div>
+                	</div>
+                	<div class="wl-b1">
+                		<div class="wl-a4 wl-k5"><p class="lenged mapColor3"></p></div>
+                		<div class="wl-a4 wl-k15"><p><=500</p></div>
+                	</div>
+                </div>
+                
+            </div>
+
+
+        </div>
+        <div class="wl-k8 wl-a5" >
+            <div class="wl-font-orange ">
+                <div class="wl-i13 wl-font-weight">当日修/当日装</div>
+                <div class="wl-i9_1 wl-txt">Install And Repair In The Day</div>
+            </div>
+            <div class="wl-box" id="broadBand_chart01" style="height: 410px;margin:10px 0 0 0 ;padding: 0;width: 100%;">
+                
+            </div>
+            <div class="wl-font-orange wl-d0">
+                <div class="wl-i13 wl-font-weight">各地市宽带/iTV在线用户数</div>
+                <div class="wl-i9_1 wl-txt">Broadband / iTV Online Users</div>
+            </div>
+            <div class="wl-box" id="broadBand_chart02" style="height: 450px;margin:10px 0 0 0 ;padding: 0;width: 100%;">              
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/echarts.js"></script>
+<!--地图-->
+<script type="text/javascript" src="js/jiangsu.js" ></script>
+<script type="text/javascript" src="js/broadBand_chart01.js?v=1.0;" ></script>
+<script type="text/javascript" src="js/interfaceURL.js?v=1.0" ></script>
+</body>
+</html>

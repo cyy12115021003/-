@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>Title</title>
+    <link rel="stylesheet" href="css/wl.css" >
+</head>
+<body>
+<div class="wl-bj">
+    <div class="wl-newbody banner">
+    	<ul class="pic" id="picBody"></ul>
+    	<ul class="lr">
+    		<li class="pre"><a href="#">  </a></li>
+       		<li class="next"><a href="#">  </a></li>
+
+    	</ul>
+    </div>
+</div>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/interfaceURL.js" ></script>
+<script>
+	var ajaxurl='http://'+url+'/bigscreen-schedule/bigScreen/listSpringData';
+	var imgNum = 0;
+	ajaxFunction(ajaxurl,'',newYearCallback);
+	function newYearCallback(data){
+		var bodys = data.body,imgArr = '';
+	    if(bodys.length&&bodys.length>0){
+	    	imgNum = bodys.length;
+	    	for(var m=0;m<bodys.length;m++){	    			
+	    		imgArr += '<li><a href="#"><img title="第'+(m+1)+'张图片" width="3200px" height="1100px" src="'+bodys[m]+'"/></a></li>';
+	    	}
+	    	$("#picBody").append(imgArr);
+	    }else{
+	    	
+	    }	    		
+	}
+	
+   //鼠标滑过banner，左右按钮进行显示和隐藏
+   /*$(".banner").hover(function(){
+     	$(".lr").show();
+   },function(){
+     	$(".lr").hide();
+   });*/
+    var a=0;
+   //点击左右按钮，图片进行切换效果
+   	$(".pre").click(function(){
+     	a--;
+     	a=(a+imgNum)%imgNum;
+    	$(".pic").animate({marginLeft:-3200*a},"slow");     	
+    });
+   	$(".next").click(function(){
+     	a++;
+     	a=a%imgNum;
+     	$(".pic").animate({marginLeft:-3200*a},"slow");   	
+    });
+
+
+	 //ajax
+    function ajaxFunction(ajaxurl,parameter,callback){
+    	$.ajax({
+            type:'get',
+            url: ajaxurl,
+            dataType : 'json',
+            data:parameter,       
+            success : function(data) {
+                if(data.TSR_CODE == "0"){                  
+                   	callback(data);                                   
+                }else{
+                	console.log(data.TSR_MSG);	                  
+                }
+            },
+            error:function(){
+				console.log("访问出错，请重试!");
+            }
+	    });
+    }
+    
+</script>
+</body>
+</html>

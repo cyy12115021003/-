@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html>
+  <head >
+  <meta charset="utf-8">
+    <script type="text/javascript" src="js/echarts.js"></script>
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jiangsu.js" charset="utf-8"></script>
+  </head>
+
+ <body>
+     <div id= "main" style="width:850px;height:600px;"></div>
+     <div id ="backBtn" style = "background:#000;opacity:0.8;cursor: pointer;border-radius: 2px;padding:8px 30px;display:none;color: #fff;font-size:14px;">返回上一级</div>
+     <script type="text/javascript">
+	var cityMap = {
+   		"南京市": "320100","无锡市": "320200","徐州市": "320300","常州市": "320400",
+   		"苏州市": "320500","南通市": "320600","连云港市": "320700","淮安市": "320800",
+   		"盐城市": "320900","扬州市": "321000","镇江市": "321100","泰州市": "321200",
+   		"宿迁市": "321300" 
+    };
+	
+    var myChart = echarts.init(document.getElementById('main'));
+    //存储切换的每一级地图信息
+    var mapStack = [];
+    var curMap = {};
+ 
+    //初始化地图
+    loadMap('32', 'jiangsu');
+    /**
+       绑定用户切换地图区域事件
+       cityMap对象存储着地图区域名称和区域的信息(name-code)
+       当mapCode有值说明可以切换到下级地图
+       此时保存上级地图的编号和名称
+    */
+ 
+    /**
+       绑定右键事件
+    */
+  /*  myChart.on('contextmenu', function(params) {
+       $('#contextMenu').css({
+           left: params.event.offsetX,
+           top: params.event.offsetY
+       }).show();
+    });*/
+    /**
+       响应图表的右键事件，返回上一级地图
+    */
+    $('#backBtn').on('click', function () {
+        $(this).hide();
+        loadMap('32', 'jiangsu');
+    });
+    
+     myChart.on('mapselectchanged', function(params) { 
+    	console.log(params);
+        var name = params.batch[0].name;    
+        var mapCode = cityMap[name];
+        (mapCode!=undefined)&&loadMap(mapCode, name); 
+        if(!mapCode){
+        	loadMap('32', 'jiangsu');
+        }
+        $('#backBtn').show();
+    });
+    /**
+       加载地图：根据地图所在省市的行政编号，获取对应的json地图数据，然后向echarts注册该区域的地图, 最后加载地图信息
+       mapCode:地图行政编号,for example['中国':'100000', '湖南': '430000']
+       mapName: 地图名称
+    */
+    function loadMap(mapCode, mapName) {
+        $.getJSON('js/cityJSON/' + mapCode + '.json', function (data) {
+             if (data) {
+                 echarts.registerMap(mapName, data);
+                 var option = {
+                    tooltip: {
+                        trigger: 'item',
+                        formatter: '{b}'
+                    },
+                    series: [
+                        {
+                            name: '',
+                            type: 'map',
+                            mapType: mapName,
+                            selectedMode : 'single',
+                            label: {
+                                normal: {
+                                    show: true
+                                },
+                                emphasis: {
+                                    show: true
+                                }
+                            },
+                            data:[
+                            	
+                            ]
+                        }
+                    ]
+                 };
+                 myChart.setOption(option);
+                 //存储当前地图的信息
+                 
+             } else {
+                 console.log('无法加载该地图');
+             }       
+        });
+    }
+    </script>
+
+  </body>
+</html>

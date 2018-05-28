@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <title>Title</title>
+    <link rel="stylesheet" href="css/wl.css" >
+
+</head>
+<body >
+<div class="wl-bj">
+    <!--导航-->
+
+    <!--主体-->
+    <div class="wl-body ">
+        <div class="wl-k12 wl-a5">
+            <div class="wl-font-orange">
+                <div class="wl-i13 wl-font-weight">全省IDC机架量<span id="totalShow"></span></div>
+                <div class="wl-i9_1 wl-txt">IDC Rack Capacity In The Province</div>
+            </div>
+            <div class="wl-box wl-o1" style="border: none;height: 980px;">
+                <div class="wl-o2" id="IDC_chart_Map" style="width:100%;height: 980px;z-index: 10"></div>
+                <div class="wl-skip-warp">
+                    <div class="wl-i10_1" style="padding-left: 10px;">在租机架量TOP3</div>
+                    <div id="idcTopDiv"></div>
+                    <!--<div class="wl-skip-box wl-i4_1">
+                        <div class="wl-skip-label">1</div>
+                        <div id="idc_topOneName" class="wl-i5"></div>
+                        <div id="idc_topOneFrame"></div>
+                        <div id="idc_topOneRent"></div>
+                    </div>
+                    <div class="wl-skip-box wl-i4_1">
+                        <div class="wl-skip-label">2</div>
+                        <div id="idc_topTwoName" class="wl-i5"></div>
+                        <div id="idc_topTwoFrame"></div>
+                        <div id="idc_topTwoRent"></div>
+                    </div>
+                    <div class="wl-skip-box wl-i4_1">
+                        <div class="wl-skip-label">3</div>
+                        <div id="idc_topThrName" class="wl-i5"></div>
+                        <div id="idc_topThrFrame"></div>
+                        <div id="idc_topThrRent"></div>
+                    </div>-->
+                </div>
+                
+                <div class="wl-skip-warp2">
+                	<p class="wl-l22">在租</p>
+                	<div class="wl-b1">
+                		<div class="wl-a4 wl-k5"><p class="lenged mapColor1"></p></div>
+                		<div class="wl-a4 wl-k15"><p>>=2000</p></div>
+                	</div>
+                	<div class="wl-b1">
+                		<div class="wl-a4 wl-k5"><p class="lenged mapColor2"></p></div>
+                		<div class="wl-a4 wl-k15"><p>200~2000</p></div>
+                	</div>
+                	<div class="wl-b1">
+                		<div class="wl-a4 wl-k5"><p class="lenged mapColor3"></p></div>
+                		<div class="wl-a4 wl-k15"><p><=200</p></div>
+                	</div>
+                </div>
+                
+            </div>
+
+
+        </div>
+        <div class="wl-k8 wl-a5" >
+            <div class="wl-font-orange ">
+                <div class="wl-i13 wl-font-weight">IDC重点客户流量占比</div>
+                <div class="wl-i9_1 wl-txt">IDC Key Customer Traffic Ratio Situation</div>
+            </div>
+            <div id="IDC_chart01" class="wl-box" style="height: 410px;margin:10px 0 0 0 ;padding: 0;width: 100%;">
+               
+            </div>
+            <div class="wl-font-orange wl-d0">
+                <div class="wl-i13 wl-font-weight">各地市流量流向</div>
+                <div class="wl-i9_1 wl-txt">Flow Direction</div>
+            </div>
+            <div id="IDC_chart02" class="wl-box " style="height: 450px;margin:10px 0 0 0 ;padding: 0;width: 100%;">
+               
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/echarts.js"></script>
+<!--地图-->
+<script type="text/javascript" src="js/jiangsu.js" ></script>
+<script type="text/javascript" src="js/IDC_chart01.js?v=1.0;" ></script>
+<script type="text/javascript" src="js/interfaceURL.js?v=1.0" ></script>
+</body>
+</html>

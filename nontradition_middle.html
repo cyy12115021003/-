@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<title>Title</title>
+	<link rel="stylesheet" href="css/wl.css">
+</head>
+<body>
+<div class="wl-bj">
+	<div class="wl-body ">
+		<div class="wl-k10 wl-a5">
+			<div class="wl-font-orange">
+				<div class="wl-i13 wl-font-weight">各地市流量攻击源分布情况</div>
+				<div class="wl-i9_1 wl-txt">Distribution of traffic attacks in cities</div>
+			</div>
+			<div class="wl-box wl-o1" style="border: none;height: 980px;">
+				<div id="attack_chart_Map" class="wl-o2" style="width:100%;height:980px;z-index: 10;"></div>
+				<div class="wl-skip-warp" style="left: -3px;bottom:10px;">
+					<div class="wl-i10_1" style="padding-left: 10px;">全省攻击汇总</div>
+					<div class="wl-skip-box wl-i6" style="height: 45px;padding-left: 6px;width: 225px;">
+						省内源发攻击肉鸡数:<span id="insrc_span"></span>
+					</div>
+					<div class="wl-skip-box wl-i6" style="height: 45px;padding-left: 6px;width: 225px;">
+						省内遭受攻击目标数:<span id="indst_span"></span>
+					</div>
+					<!--
+					<div class="wl-skip-box wl-i4" style="height: 42px;padding-left: 6px;width: 195px;">
+						对省外发起攻击源数量:<span id="outsrc_span"></span>
+					</div>
+					<div class="wl-skip-box wl-i4" style="height: 42px;padding-left: 6px;width: 195px;">
+						省外对省内攻击源数量:<span id="outdst_span"></span>
+					</div>
+					-->
+				</div>
+			</div>
+		</div>
+		<div class="wl-k10 wl-a5">
+			<div class="wl-font-orange ">
+				<div class="wl-i13 wl-font-weight">DDoS攻击风险排行</div>
+				<div class="wl-i9_1 wl-txt">Risk Ranking of DDoS attack</div>
+			</div>
+			<div id="DDoS_attack_chart" class="wl-box" style="height: 410px;margin:10px 0 0 0 ;padding: 0;width: 100%;"></div>
+			<div class="wl-font-orange wl-d0">
+				<div class="wl-i13 wl-font-weight">僵木蠕事件风险排行</div>
+				<div class="wl-i9_1 wl-txt">Risk Ranking of Zombie,Trojan horse and worm</div>
+			</div>
+			<div id="worm_chart" class="wl-box" style="height: 450px;margin:10px 0 0 0 ;padding: 0;width: 100%;"></div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/echarts.js"></script>
+<script type="text/javascript" src="js/jiangsu.js"></script>
+<script type="text/javascript" src="js/interfaceURL.js?v=1.0;"></script>
+<script type="text/javascript" src="js/nontradition_middle.js?v=1.0;"></script>
+</body>
+</html>

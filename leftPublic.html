@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<title>Title</title>
+	<link rel="stylesheet" href="css/wl.css">
+
+</head>
+<body>
+<div class="wl-bj">
+	<div class="wl-body ">
+		<div class="wl-k10 wl-a5">
+			<div class="wl-font-orange">
+				<div class="wl-i13 wl-font-weight">移动</div>
+				<div class="wl-i9_1 wl-txt">Mobile</div>
+			</div>
+			<div class="wl-box " style="padding-right: 20px;height:500px;">
+
+				<div class="wl-b1">
+					<div class="wl-k10 wl-a4">
+						<div class="wl-box" style="height: 150px;margin:0;padding: 0;width: 95%;">
+							<div class="wl-titile-bj">4G基站<span></span>数量</div>
+							<div class="counter1 wl-i21 wl-m1 wl-d1 wl-font-yellow"><span id="4GbaseNum"></span></div>
+						</div>
+					</div>
+					<div class="wl-k10 wl-a4 wl-m3">
+						<div class="wl-box wl-m2" style="height: 150px;margin:0 0 0 10px;padding: 0;width: 95%;">
+							<div class="wl-titile-bj">3G基站<span></span>数量</div>
+							<div class="counter2 wl-i21 wl-m1 wl-d1 wl-font-yellow"><span id="3GbaseNum"></span></div>
+						</div>
+					</div>
+				</div>
+				<div class="wl-b1 wl-d0">
+					<div class="wl-k10 wl-a4">
+						<div class="wl-box" style="height: 150px;margin:0;padding: 0;width: 95%;">
+							<div class="wl-titile-bj">4G在线用户数</div>
+							<div class="counter3 wl-i21 wl-m1 wl-d1 wl-font-yellow" id="4GonlineNum"></div>
+						</div>
+					</div>
+					<div class="wl-k10 wl-a4 wl-m3">
+						<div class="wl-box wl-m2" style="height: 150px;margin:0 0 0 10px;padding: 0;width: 95%;">
+							<div class="wl-titile-bj">C网语音在线用户数</div>
+							<div class="counter4 wl-i21 wl-m1 wl-d1 wl-font-yellow" id="conlineNum"></div>
+						</div>
+					</div>
+				</div>
+				<div class="wl-i10_1 wl-font-white wl-d0">4G核心网流速/带宽</div>
+				<div class="wl-pg-wrap wl-d0" style="width: 610px;">
+					<div id="fouGSpeBraw" class="wl-o1" style="z-index: 99;"></div>
+					<div id="fouGSpeBrawWidth" class="wl-pg-area" style=""></div>
+				</div>
+				<div class="wl-a3 wl-o1 wl-d0" style="top:-3px;margin-left: 10px;">
+					<div class="wl-i8">利用率</div>
+					<div id="4G_rates" class="wl-i17 wl-font-yellow wl-q12"></div>
+				</div>
+			</div>
+
+			<div class="wl-font-orange wl-t2">
+				<div class="wl-i13 wl-font-weight">IDC+云计算</div>
+				<div class="wl-i9_1 wl-txt">Cloud Computing</div>
+			</div>
+			<div class="wl-box" style="padding: 5px 0 10px 20px;height: 360px;">
+				<div class="wl-b1 wl-t0">
+					<div class="wl-i10_1">IDC租用量/机架数</div>
+					<div class="wl-t0">
+						<div class="wl-pg-wrap" style="width: 630px;">
+							<div id="idcRentNumber" class="wl-o1" style="z-index: 99;"></div>
+							<div id="idcRentNumberWidth" class="wl-pg-area"></div>
+						</div>
+						<div class="wl-a3 wl-o1 " style="top:-3px;margin-left: 8px;">
+							<div class="wl-i8">利用率</div>
+							<div id="idc_rate" class="wl-i17 wl-font-yellow wl-q12"></div>
+						</div>
+					</div>
+				</div>
+				<div class="wl-b1 wl-t0">
+					<div class="wl-i10_1">行业云/总数</div>				
+					<div class="wl-t0">
+						<div class="wl-pg-wrap" style="width: 630px;">
+							<div id="hangYeYunNumber" class="wl-o1" style="z-index: 99;"></div>
+							<div id="hangYeYunNumberWidth" class="wl-pg-area"></div>
+						</div>
+						<div class="wl-a3 wl-o1 " style="top:-3px;margin-left: 8px;">
+							<div class="wl-i8">利用率</div>
+							<div id="hangYeYun_rate" class="wl-i17 wl-font-yellow wl-q12"></div>
+						</div>
+					</div>
+				</div>
+				<div class="wl-b1 wl-t0">
+					<div class="wl-i10_1"><span style="color:#00CBFF;">CT云</span><span style="margin: 0 5px;">+</span><span style="color:#20D11C;">网管云</span><span style="margin: 0 5px;">+</span><span style="color:#FB7D17;">业务云</span><span style="margin: 0 5px;">/</span>总数</div>									
+					
+					<!--<div class="wl-pg-wrap wl-t0" style="width: 630px;display: table;">
+						<div id="hangYeYunNumber" class="wl-o1" style="z-index: 99;">12345+23411+33333/234567</div>
+						<div id="" class="wl-new-progress" style="background:#00CBFF;width:80px;"></div>
+						<div id="" class="wl-new-progress"  style="background:#20D11C;width:110px;"></div>
+						<div id="" class="wl-new-progress"  style="background:#FB7D17;width:90px;"></div>
+					</div>-->
+					<table class="wl-pg-wrap wl-t0" style="width: 630px;">
+						<tr>
+							<td id="ctyun" style="background:#00CBFF;color:#00CBFF;">0</td>
+							<td id="wangguanyun"  style="background:#20D11C;color:#20D11C;">0</td>
+							<td id="yewuyun" style="background:#FB7D17;color:#FB7D17;">0</td>							
+						</tr>
+						<tr>
+							<td id="yunDetail" colspan="3" style="position: absolute;top: -1px;"></td>
+						</tr>
+					</table>
+					
+					<div class="wl-a3 wl-o1 " style="top:-3px;margin-left: 8px;">
+						<div class="wl-i8">利用率</div>
+						<div id="yunDetail_rate" class="wl-i17 wl-font-yellow wl-q12"></div>
+					</div>
+					
+				</div>		
+		
+			</div>
+		</div>
+		<div class="wl-k10 wl-a5" style="padding-left: 9px;">
+			<div class="wl-font-orange">
+				<div class="wl-i13 wl-font-weight">宽带</div>
+				<div class="wl-i9_1 wl-txt">Broadband</div>
+			</div>
+			<div class="wl-box" style="padding: 40px 0 40px 20px;height: 500px;">
+				<div class="wl-b1 wl-d0">
+					<div class="wl-k8 wl-i10_1 wl-a4" style="width: 38%">
+						城域网出口流速/带宽
+					</div>
+					<div class="wl-a4" style="width: 62%">
+						<div class="wl-pg-wrap" style="width:315px;">
+							<div class="wl-o1" id="manetSpeBraw" style="z-index: 99;"></div>
+							<div id="manetSpeBrawWidth" class="wl-pg-area"></div>
+						</div>
+						<div class="wl-a3 wl-o1 " style="top:-3px;">
+							<div class="wl-i8">利用率</div>
+							<div id="manetSpeBrawRate" class="wl-i17 wl-font-yellow wl-q12"></div>
+						</div>
+					</div>
+				</div>
+				<div class="wl-b1 " style="margin-top: 27px;">
+					<div class="wl-k8 wl-i10_1 wl-a4" style="width: 38%">
+						IDC出口流速/带宽
+					</div>
+					<div class="wl-a4" style="width: 62%">
+						<div class="wl-pg-wrap" style="width:315px;">
+							<div class="wl-o1" id="idcSpeBraw" style="z-index: 99;"></div>
+							<div class="wl-pg-area" id="idcSpeBrawWidth"></div>
+						</div>
+						<div class="wl-a3 wl-o1 " style="top:-3px;">
+							<div class="wl-i8">利用率</div>
+							<div class="wl-i17 wl-font-yellow wl-q12" id="idcSpeBrawRate"></div>
+						</div>
+					</div>
+				</div>
+				<div class="wl-b1 " style="margin-top: 26px;">
+					<div class="wl-k8 wl-i10_1 wl-a4" style="width: 38%">iTV在线用户数</div>
+					<div class="counter6 wl-a4 wl-i21 wl-m1 wl-font-yellow" id="itvOnline" style="width: 62%;"></div>
+				</div>
+				<div class="wl-b1 " style="margin-top: 26px;">
+					<div class="wl-k8 wl-i10_1 wl-a4" style="width: 38%">宽带在线用户数</div>
+					<div id="broadBOnline" class="counter7 wl-a4 wl-i21 wl-m1 wl-font-yellow" style="width: 62%;"></div>
+				</div>
+			</div>
+
+			<div class="wl-font-orange wl-t2">
+				<div class="wl-i13 wl-font-weight">光网</div>
+				<div class="wl-i9_1 wl-txt">Optical Network</div>
+			</div>
+			<div class="wl-box" style="padding: 10px 0 10px 20px;height: 360px;">
+				<div class="wl-b1 wl-d0">
+					<div class="wl-k8 wl-i10_1 wl-a4" style="width: 38%">光分纤点</div>
+					<div id="opticalFiber" class="counter8 wl-a4 wl-i21 wl-m1" style="width: 62%;"></div>
+				</div>
+				<div class="wl-b1 " style="margin-top: 26px;">
+					<div class="wl-k8 wl-i10_1 wl-a4" style="width: 38%">端口(PON)在用/总数</div>
+					<div class="wl-a4" style="width: 62%">
+						<div class="wl-pg-wrap" style="width:315px;">
+							<div id="pon" class="wl-o1" style="z-index: 99;"></div>
+							<div id="ponRentNumberWidth" class="wl-pg-area"></div>
+						</div>
+						<div class="wl-a3 wl-o1 " style="top:-3px;margin-left: 8px;">
+							<div class="wl-i8">利用率</div>
+							<div id="pon_rate" class="wl-i17 wl-font-yellow wl-q12"></div>
+						</div>
+					</div>
+					<div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/leftPublic.js?v=1.0;"></script>
+<script type="text/javascript" src="js/interfaceURL.js?v=1.0;"></script>
+<script type="text/javascript" src="js/jquery.waypoints.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+	<title>江苏电信网络核心能力</title>
+	<link rel="stylesheet" href="css/wl.css">
+	<style>
+		body {overflow-y: hidden;}
+		.lightRed {color : #FF580D}
+		.flashing{
+			animation: twinkling .81s 1 ease-in-out;animation-fill-mode : forwards;
+			-webkit-animation: twinkling .81s 1 ease-in-out;-webkit-animation-fill-mode : forwards;
+		}
+		@-webkit-keyframes twinkling{
+			0%{  opacity: 1;  }
+			12.5%{  opacity: 0.75;  }
+			25%{  opacity: 0.5;  }
+			37.5%{  opacity: 0.25;  }
+			50%{  opacity: 0;  }
+			62.5%{  opacity: 0.25;  }
+			75%{  opacity: 0.5;  }
+			87.5%{  opacity: 0.75;  }
+			100%{  opacity: 1;  }
+		}
+		@keyframes twinkling{
+			0%{  opacity: 1;  }
+			12.5%{  opacity: 0.75;  }
+			25%{  opacity: 0.5;  }
+			37.5%{  opacity: 0.25;  }
+			50%{  opacity: 0;  }
+			62.5%{  opacity: 0.25;  }
+			75%{  opacity: 0.5;  }
+			87.5%{  opacity: 0.75;  }
+			100%{  opacity: 1;  }
+		}
+		/*菜单左右切换*/
+		#move_lis,#move_liss{width: 3200px;white-space: nowrap;overflow: hidden;display: block;text-overflow: ellipsis;}
+		#move_lis li,#move_liss li{width: 640px;vertical-align: middle; display: table-cell;border-right:1px solid #3f6a9d;}
+	    .move_li{width:0px;background-color: #011330;}
+	    .divType ul li{float: left;}
+	</style>
+</head>
+<body>
+	<div class="wl-bj wl-top-wrap" style="width:4800px;background-size:100%;">
+		<!--左边-->
+		<div class="wl-top-wrap wl-float-left" style="padding: 0 20px;">
+			<div style="cursor: pointer;" class="wl-k10 wl-a4" onclick="$newMainMenus.hide().prev().show();$newMainMenusDiv.hide();location.reload();">
+				<img src="images/logo.png" class="wl-a1 " style="margin-right: 5px;"><span class="wl-a1 wl-q6" id="titleContent"></span>
+			</div>
+			<div class="wl-k10 wl-a4 wl-m3">
+				<span id="currentTime" class="wl-i10 wl-w7 wl-a1 wl-q6"></span>
+				<div style="display: inline-block;">
+					<img id="weatherLogo" src="" class="wl-a1">
+					<span id="hightemp" class="wl-a1 wl-q6"></span>
+					<span class="wl-q6 wl-a1">
+	                	<div class="wl-i7 wl-m2" id="weatherCity">南京市</div>
+	               	 	<div id="weatherType" class="wl-i9"></div>
+	            	</span>
+				</div>
+			</div>
+		</div>
+		
+		<!--中间固定有的内容-->
+		<div id="mainMenus" class="divType wl-top-wrap wl-float-left wl-top-bj" style="width:3200px;">
+			<ul>
+				<li class="move_li wl-j3" style="display: none;" title="点击向前" onclick="move_left();" leftRightHide>
+					<img src="images/leftArrow.png"/>
+				</li>
+				
+				<li id="move_lis" style="position: relative;">
+					<div style="width:3000000px;">
+						<ul id="menuContent"></ul>				
+					</div>
+				</li>	
+				
+				<li class="move_li wl-j2" style="display: none;" title="点击向后" onclick="move_right();" leftRightHide>
+					<img src="images/rightArrow.png"/>
+				</li>
+			</ul>
+		</div>	
+				
+		<!--更多菜单里面的子菜单显示内容-->
+		<div id="newMainMenus"></div>
+		<ul class="moreli" id="moreli"></ul>
+		<div class="wl-float-clear"></div>
+	</div>
+	<!--主内容-->
+	<div style="width:4800px;" id="iframeDiv">
+		<!--左html-->
+		<div class="wl-float-left">
+			<iframe frameborder=0 width=1600 height=1100 marginheight=0 marginwidth=0 scrolling=no src=""></iframe>
+		</div>
+		<!--中html-->
+		<div class="wl-float-left">
+			<iframe frameborder=0 width=1600 height=1100 marginheight=0 marginwidth=0 scrolling=no src=""></iframe>
+		</div>
+		<!--右html-->
+		<div class="wl-float-left">
+			<iframe frameborder=0 width=1600 height=1100 marginheight=0 marginwidth=0 scrolling=no src=""></iframe>
+		</div>
+		<div class="wl-float-clear"></div>
+	</div>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/interfaceURL.js?v=1.0"></script>
+<script>
+	var $iframe_left, $iframe_center, $iframe_right,firstLeftType,firstMiddleType,secondeMiddleType;	
+	var thisIndexs = '',hasWidth = 0;
+	$(function () {
+		$iframe_left = $("#iframeDiv div:eq(0) iframe");
+		$iframe_center = $("#iframeDiv div:eq(1) iframe");
+		$iframe_right = $("#iframeDiv div:eq(2) iframe");	
+		$newMainMenus = $("#newMainMenus");
+		$newMainMenusDiv = $("#newMainMenus div");
+	});
+	var ajaxurl='http://'+url+'/bigscreen-schedule/bigScreen/firstLevelMenus',
+		ajaxurlTitle='http://'+url+'/bigscreen-schedule/bigScreen/title',
+		ajaxurlMore='http://'+url+'/bigscreen-schedule/bigScreen/secondaryMenus';
+	//初始化菜单
+	ajaxFunction(ajaxurl,'',firstMenuCallback);
+	ajaxFunction(ajaxurlTitle,'',title);
+	function firstMenuCallback(data){
+		var firstMenuList = "",firstMenuBody = data.body;
+		if(firstMenuBody.length){
+			if(firstMenuBody.length>5){
+				$("li[leftRightHide]").show();
+				hasWidth = 24;
+			}else{
+				$("li[leftRightHide]").hide();
+				hasWidth = 0;
+			}
+			for(var i=0;i<firstMenuBody.length;i++){
+				var MenuItem = firstMenuBody[i],classPosition = "",moreliClick = "";
+				if(MenuItem.leftContent==""&&MenuItem.middleContent==""&&MenuItem.rightContent==""){							
+					classPosition = "wl-o1";
+					moreliClick = "moreliClick";
+				
+				}else{					
+					moreliClick = "tab_yidong";
+				}
+				firstMenuList +='<li id="'+moreliClick+'" class="wl-menu-nav '+(i==0?'active':'')+' '+classPosition+'" onclick="setNav(this,\''+MenuItem.id+'\',\''+MenuItem.leftContent+'\',\''+MenuItem.middleContent+'\',\''+MenuItem.rightContent+'\');">';
+				firstMenuList += '<img src="'+MenuItem.menuIcon+'" class="wl-a1 wl-t16">';							
+				firstMenuList += '<span class="wl-a1 wl-q13 wl-m2 wl-font-blue2">';	
+				firstMenuList += '<div class="wl-i15 wl-font-weight">'+MenuItem.name+'</div>';	
+				firstMenuList += '<div class="wl-i10 wl-txt">'+MenuItem.englishName+'</div>';				
+				firstMenuList += '</span>';		
+				firstMenuList += '</li>';
+				$iframe_left.attr('src',firstMenuBody[0].leftContent);
+				$iframe_center.attr('src',firstMenuBody[0].middleContent);
+				$iframe_right.attr('src',firstMenuBody[0].rightContent);
+				firstLeftType = firstMenuBody[0].leftContent;
+				firstMiddleType = firstMenuBody[0].middleContent;
+				secondeMiddleType = firstMenuBody[0].rightContent;
+			}				
+			$("#menuContent").append(firstMenuList);			
+			$("#moreliClick").click(function(){
+				$("#moreli").toggle();	
+			})		
+		}
+	}
+	function title(data){
+		$("#titleContent").text(data.body);
+	}
+	function setNav(thisIndex,id,left,middle,right, fromMainTitle) {
+		if ($(thisIndex).hasClass("active")){return}
+		$("#move_lis").find("ul li").not($(thisIndex)).removeClass("active");
+		$("#move_liss").find("ul li").not($(thisIndex)).removeClass("active");
+		if (fromMainTitle) {
+			$(thisIndex).addClass("active");			
+		} else {
+			if ($(thisIndex).hasClass("active")) {
+				$(thisIndex).removeClass("active");
+			} else {
+				$(thisIndex).addClass("active");
+			}
+		}
+		if(middle==''&&left==''&&right==''){
+			var param = {"menuId":id};
+			ajaxFunction(ajaxurlMore,param,secondeMenuCallback);	
+			thisIndexs = thisIndex;			
+		}else{
+			$("#moreli").hide();	
+			$iframe_left.attr('src',left);
+			$iframe_center.attr('src',middle);
+			$iframe_right.attr('src',right);
+		}	
+	}
+	
+	function secondeMenuCallback(data){
+		var moreList = "",moreBody = data.body;
+		if(moreBody.length){			
+			for(var j=0;j<moreBody.length;j++){								
+				moreList +='<li onclick="setNavs(this,\''+moreBody[j].id+'\',\''+moreBody[j].leftContent+'\',\''+moreBody[j].middleContent+'\',\''+moreBody[j].rightContent+'\');">';	
+				moreList +=moreBody[j].name;
+				moreList += '</li>';	
+			}	
+			var leftMoreli = $("#moreliClick").position().left;
+			$("#moreli").html(moreList).css({top :'100px', left : leftMoreli + 1600 + 'px'});	
+		}		
+	}
+	function setNavs(thisIndex,id,leftMore,middelMore,rightMore) {
+		event.stopPropagation();
+		$("#moreli").hide();		
+		if(middelMore==''&&rightMore==''){
+			var params = {"menuId":id};
+			ajaxFunction(ajaxurlMore,params,threeMenuCallback);
+			$("#mainMenus").hide();					
+		}else{	
+			$iframe_left.attr('src',leftMore);
+			$iframe_center.attr('src',middelMore);
+			$iframe_right.attr('src',rightMore);
+		}				
+	}
+	function threeMenuCallback(data){
+		var threeMenuList = "",threeMenuBody = data.body;
+		if(threeMenuBody.length){			
+			threeMenuList += '<div class="divType wl-top-wrap wl-float-left wl-top-bj" style="width: 3200px;display: none;">';
+			threeMenuList += '<ul><li class="move_li wl-j3" style="display: none;" title="点击向前" onclick="move_lefts();" leftRightHides><img src="images/leftArrow.png"/></li>';	
+			threeMenuList += '<li id="move_liss"><div style="width: 3000000px;"><ul>';
+			for(var i=0;i<threeMenuBody.length;i++){
+				var MenuItem = threeMenuBody[i];	
+				//春节活动
+				if(MenuItem.rightContent==''){
+					$iframe_center.css({'width':'3200px','height':'1100px'});
+					$iframe_right.width('0px');	
+					threeMenuList +='<li class="wl-menu-nav" style="width:3200px;background:none;" onclick="setNav(this,\''+MenuItem.id+'\',\''+MenuItem.leftContent+'\',\''+MenuItem.middleContent+'\',\''+MenuItem.rightContent+'\');">';
+				}else{			
+					threeMenuList +='<li class="wl-menu-nav" onclick="setNav(this,\''+MenuItem.id+'\',\''+MenuItem.leftContent+'\',\''+MenuItem.middleContent+'\',\''+MenuItem.rightContent+'\');">';
+				}
+				if(MenuItem.menuIcon!=''){
+					threeMenuList += '<img src="'+MenuItem.menuIcon+'" class="wl-a1 wl-t16" style="width: 66px;height: 66px;">';	
+				}
+				threeMenuList += '<span class="wl-a1 wl-q7 wl-m2">';	
+				if(MenuItem.rightContent==''){
+					threeMenuList += '<div class="wl-i15 wl-font-weight" style="font-size:50px;letter-spacing:20px;">'+MenuItem.name+'</div>';
+				}else{
+					threeMenuList += '<div class="wl-i15 wl-font-weight">'+MenuItem.name+'</div>';
+				}
+				threeMenuList += '<div class="wl-i10 wl-txt">'+MenuItem.englishName+'</div>';				
+				threeMenuList += '</span>';			
+				threeMenuList += '</li>';					
+				$iframe_left.attr('src',threeMenuBody[0].leftContent);
+				$iframe_center.attr('src',threeMenuBody[0].middleContent);
+				$iframe_right.attr('src',threeMenuBody[0].rightContent);
+			}	
+			threeMenuList +='</ul></div></li>';
+			threeMenuList +='<li class="move_li wl-j2" style="display: none;" title="点击向后" onclick="move_rights();" leftRightHides><img src="images/rightArrow.png"/></li>';
+			threeMenuList +='</ul></div>';
+			$("#newMainMenus").html(threeMenuList);	
+			var move_liss = document.getElementById("move_liss");
+			if(threeMenuBody.length>5){
+				$("li[leftRightHides]").show();
+			}else{
+				$("li[leftRightHides]").hide();
+			}			
+			$("#newMainMenus div").show().find("#move_liss ul li").removeClass("active").get(0).classList.add('active');
+			$newMainMenus.show();
+		}
+	}
+	
+	
+		
+	var $wendu,$weatherType, $weatherCity,  weatherRefreshTime = 12 * 60 * 60000;
+	var _flashWeatherInterval, _curFlashEareIndex;
+	$(function () {
+		var currentTime = document.getElementById("currentTime");
+		setInterval(function () {// 程序计时的月从0开始取值后+1
+			var time = new Date();
+			currentTime.innerHTML = time.getFullYear() + "年" + (time.getMonth() + 1) + "月" + time.getDate() + "日      " + time.getHours() + ":" + time.getMinutes() + ":" + time.getSeconds();
+		}, 1000);
+		$wendu = $("#hightemp");
+		$weatherType = $("#weatherType");
+		$weatherCity = $("#weatherCity");
+		handleWeather();
+	});
+	
+	function handleWeather() {
+		$.ajax({
+			url: "http://"+url+"/bigscreen-schedule/bigScreen/weatherData",
+			type: "get", data: {}, dataType: "json",
+			success: function (data) {
+				if (data.TSR_CODE == "0") {
+					drawWeather(data.body);
+				} else {
+					$wendu.html("未知");
+					$weatherType.html("晴");
+				}
+				setTimeout(handleWeather, weatherRefreshTime);
+			},
+			error: function () {}
+		});
+	}
+
+	function drawWeather(weatherData) {
+		window._curFlashEareIndex = 0;
+		if (_flashWeatherInterval){
+			clearInterval(_flashWeatherInterval);
+			_flashWeatherInterval = null;
+
+		}
+		_flashWeatherInterval = setInterval(function () {
+			if (_curFlashEareIndex >= weatherData.length){
+				_curFlashEareIndex = 0;
+			}
+			showWeather(weatherData[_curFlashEareIndex]);
+			_curFlashEareIndex++;
+		}, 3840);
+	}
+
+	
+	function showWeather(wData) {
+		cssAnimate($wendu.parent(), 'flashing');
+		$weatherCity.html(wData.city);
+		$wendu.html(wData.lowTem + '~' + wData.highTem + '℃');//温度
+		$weatherType.html(wData.describe);//阵雨、晴、多云等等
+	}
+
+	function cssAnimate($me, animationName, callBack) {
+		var animationEnd = 'webkitAnimationEnd animationend', animClz = animationName;
+		var listener = function () {
+			callBack && callBack();
+			$me.removeClass(animClz).off(animationEnd, false, listener);
+		};
+		$me.addClass(animClz).on(animationEnd, listener);
+	}
+    //ajax
+    function ajaxFunction(ajaxurl,parameter,callback){
+    	$.ajax({
+            type:'get',
+            url: ajaxurl,
+            dataType : 'json',
+            data:parameter,       
+            success : function(data) {
+                if(data.TSR_CODE == "0"){                  
+                   	callback(data);                                   
+                }else{
+                	console.log(data.TSR_MSG);	                  
+                }
+            },
+            error:function(){
+				console.log("访问出错，请重试!");
+            }
+	    });
+    }
+    
+   //菜单向左切换	
+	var move_lis = document.getElementById("move_lis");
+	function move_left(){
+		if(move_lis.scrollLeft>=0){
+		  move_lis.scrollLeft-=400;
+		}
+	}
+	function move_right(){		
+		if(move_lis.scrollLeft<=(3000000-2000)){
+			move_lis.scrollLeft+=400;
+		}
+	}
+	
+	function move_lefts(){
+		if(move_liss.scrollLeft>=0){
+		  move_liss.scrollLeft-=400;
+		}
+	}
+	function move_rights(){		
+		if(move_liss.scrollLeft<=(3000000-2000)){
+			move_liss.scrollLeft+=400;
+		}
+	}
+</script>
+</body>
+</html>
